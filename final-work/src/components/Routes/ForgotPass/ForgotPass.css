@@ -1,0 +1,16 @@
+.div-resetPass {
+    border-radius: 10px;
+    border: solid 1px grey;
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+  }
+
+.btn-resetPass {
+    background-color: green;
+}

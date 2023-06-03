@@ -1,0 +1,46 @@
+*{
+    border-radius: 10px;
+}
+.div-header {
+    text-align: center;
+  }
+  
+.link-header{
+    text-decoration: none; /* Elimina el subrayado */
+    color: black; 
+}
+.title-header{
+    text-align: center;
+    border:  1px;
+    padding: 10px;    
+    font-size: 60px;
+    display: grid;
+ 
+}
+
+.column-header{
+    padding: 15px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; 
+    
+}
+
+.div-header-container {
+    background-color: rgb(237, 233, 233);
+    padding: 20px;
+    text-align: center;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    border-radius: 10px; /* Ajusta el valor según tus preferencias */
+  }
+
+.link {
+    text-decoration: none; /* Elimina el subrayado */
+    color: black; 
+}
+
+.div-header-container.hovered {
+    transform: scale(1.2);
+    background-color: lightgreen;
+  }

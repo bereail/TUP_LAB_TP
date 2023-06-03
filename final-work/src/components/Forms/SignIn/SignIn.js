@@ -21,20 +21,15 @@ const alertSignIn = (valueAlert) => {
 const navigate = useNavigate();
 
 const signInClicked = () => {
-  if (emailRef.current.value.length === 0) {
-    emailRef.current.focus();
-    emailRef.current.style.borderColor = "red";
-    emailRef.current.style.outline = "none";
+  if (userRef.current.value.length === 0) {
+    alertSignIn(userRef);
     return;
   }
-
-  if(password.length === 0){
-    passwordRef.current.focus();
-    passwordRef.current.style.borderColor = "red";
-    passwordRef.current.style.outline = "none";
+  if (passRef.current.value.length === 0) {
+    alert(passRef);
     return;
   }
-  alert(`El mail ingresado es: ${email} y password ${password}`)
+  alert(`El usuario es: ${userRef.current.value} y la contraseña es: ${passRef.current.value}`);
 
   onLogin();
   navigate("/home");

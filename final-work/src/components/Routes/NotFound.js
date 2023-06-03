@@ -1,22 +1,47 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { RouterProvider } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 
-const NotFound = () => {
-  const navigation = useNavigate();
+import "./App.css";
 
-  const goBackHandler = () => {
-    navigation("/");
+import SignIn from "./components/Forms/SignIn/SignIn";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Protected from "./components/Protected/Protected";
+import NotFound from "./components/Routes/NotFound";
+
+const App = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const signInHandler = () => {
+    setIsSignedIn(true);
   };
 
-  return (
-    <div className="d-flex  flex-column justify-content-center align-items-center">
-      <h2>La pagina no esta disponible</h2>
-      <Button className="w-25" onClick={goBackHandler}>
-        Volver al inicio
-      </Button>
-    </div>
-  );
+  const logoutHandler = () => {
+    setIsSignedIn(false);
+  };
+
+  const router = createBrowserRouter([
+    {
+      path: "/signIn",
+      element: <SignIn onSignIn={signInHandler} />,
+    },
+    {
+      path: "/home",
+      element: isSignedIn ? (
+        <Protected isSignIn={isSignedIn}>
+          <Dashboard onLogout={logoutHandler} />
+        </Protected>
+      ) : (
+        <SignIn onSignIn={signInHandler} />
+      ),
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
-export default NotFound;
+export default App;

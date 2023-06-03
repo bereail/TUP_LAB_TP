@@ -1,25 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './BookItems.css';
 
 import Card from '../Card/Card';
-import DateRead from '../DateRead/DateRead';
+import ReadDate from '../ReadDate/ReadDate';
 
-const BookItems =  ({title, author, dateRead, pagesCount}) => {
-
-    const [bookTitle, setBookTitle] = useState(title);
-
-    const changeTitleHandler = () => {
-        setBookTitle("Actualizado");
-        console.log(bookTitle);
-    }
-
+const BookItems =  ({title, author, date, pages}) => {
     return (
         <Card>
-            <h2>{bookTitle}</h2>
+            <h1>{title}</h1>
             <h3>{author}</h3>
-            <DateRead bookDateRead={dateRead}/>
-            <p>{pagesCount}</p>
-            <button onClick={changeTitleHandler}>Cambiar título</button>
+            <ReadDate readDate = {date}/>
+            <p>{pages}</p>
         </Card>
     );
 };

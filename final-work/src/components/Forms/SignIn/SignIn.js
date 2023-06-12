@@ -1,40 +1,40 @@
 import React, { useRef, useState } from "react";
-import "./SignIn.css"
+import "./SignIn.css";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import NavBar from "../../NavBar/NavBar";
 
-
-const SignIn = ({onLogin}) => {
+const SignIn = ({ onLogin }) => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
-  //valor de referncia inicial
   const userRef = useRef(null);
   const passRef = useRef(null);
 
-const alertSignIn = (valueAlert) => {
-  valueAlert.current.focus();
-  valueAlert.current.style.borderColor = "red";
-  valueAlert.current.style.outline= "none";
-}
+  const alertSignIn = (valueAlert) => {
+    valueAlert.current.focus();
+    valueAlert.current.style.borderColor = "red";
+    valueAlert.current.style.outline = "none";
+  };
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const signInClicked = () => {
-  if (userRef.current.value.length === 0) {
-    alertSignIn(userRef);
-    return;
-  }
-  if (passRef.current.value.length === 0) {
-    alert(passRef);
-    return;
-  }
-  alert(`El usuario es: ${userRef.current.value} y la contraseña es: ${passRef.current.value}`);
+  const signInClicked = () => {
+    if (userRef.current.value.length === 0) {
+      alertSignIn(userRef);
+      return;
+    }
+    if (passRef.current.value.length === 0) {
+      alertSignIn(passRef);
+      return;
+    }
+    alert(
+      `El usuario es: ${userRef.current.value} y la contraseña es: ${passRef.current.value}`
+    );
 
-  onLogin();
-  navigate("/home");
-};
-
+    onLogin();
+    navigate("/home");
+  };
 
   const handleChangeUser = (e) => {
     setUser(e.target.value);
@@ -47,9 +47,6 @@ const signInClicked = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Realizar acciones adicionales, como validaciones o llamadas a API
-
-    // Limpiar los campos después del envío
     setUser("");
     setPass("");
 
@@ -57,52 +54,61 @@ const signInClicked = () => {
   };
 
   return (
-    <div className="signIn-container">
+    <>
+      <NavBar />
+      <div className="signIn-container">
         <div className="signIn-box">
-             <h1>Sign In</h1>
-             <form onSubmit={handleSubmit}>
-             <div className="input-container">
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="input-container">
               User:
-             <input className="input-control"
-              type="text"
-              placeholder="Enter your user"
-              name="user"
-              value={user}
-              ref={userRef}
-              onChange={handleChangeUser}
-              required
-              pattern="[a-zA-Z]+"
-          />
-        </div>
-        <div className="input-container">
-          Password:
-          <input className="input-control"
-            type="password"
-            placeholder="******"
-            name="pass"
-            ref={passRef}
-            value={pass}
-            onChange={handleChangePass}
-            required
-          />
-          <div>
-            <Link to="/forgotPass">Forgot password?</Link>
-          </div>
-        </div>
-        
-        <div className="button-div"> 
-        <button className="signIn-button" type="button" onClick={signInClicked}> Login </button>
-      </div>
-      </form>
-      </div>
+              <input
+                className="input-control"
+                type="text"
+                placeholder="Enter your user"
+                name="user"
+                value={user}
+                ref={userRef}
+                onChange={handleChangeUser}
+                required
+                pattern="[a-zA-Z]+"
+              />
+            </div>
+            <div className="input-container">
+              Password:
+              <input
+                className="input-control"
+                type="password"
+                placeholder="******"
+                name="pass"
+                ref={passRef}
+                value={pass}
+                onChange={handleChangePass}
+                required
+              />
+              <div>
+                <Link to="/forgotPass">Forgot password?</Link>
+              </div>
+            </div>
 
-      <div className="div-createAccount">
-      New to virtual library? <Link to="/signUp">Create an account.</Link>
-      </div>
+            <div className="button-div">
+              <button
+                className="signIn-button"
+                type="button"
+                onClick={signInClicked}
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
 
-    </div>
+        <div className="div-createAccount">
+          New to virtual library? <Link to="/signUp">Create an account.</Link>
+        </div>
+      </div>
+    </>
   );
 };
 
 export default SignIn;
-

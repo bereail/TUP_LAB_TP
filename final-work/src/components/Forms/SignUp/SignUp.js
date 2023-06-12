@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./SignUp.css";
 import { Link } from "react-router-dom";
+import NavBar from "../../NavBar/NavBar";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -109,6 +110,8 @@ const SignUp = () => {
   const { name, lastName, email, pass, rptPass } = formData;
 
   return (
+    <>
+      <NavBar />
     <div className="signUp-container">
       <div className="signUp-box">
         <h1>Sign Up</h1>
@@ -183,7 +186,8 @@ const SignUp = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
-export default SignUp;
+export default SignUp

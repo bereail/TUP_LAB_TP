@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../Header/Header';
 import BookItems from '../BookItem/BookItems';
+import NavBar from '../NavBar/NavBar';
 
 const BooksHome = () => {
   const hardcoreBooks = [
@@ -36,7 +36,7 @@ const BooksHome = () => {
   
   return (
     <div>
-      <Header/>
+      <NavBar/>
       <BookItems
         title = {hardcoreBooks[0].title}
         author = {hardcoreBooks[0].author}
